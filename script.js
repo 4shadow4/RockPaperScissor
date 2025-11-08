@@ -22,17 +22,31 @@ function getComChoice(){
 
 function decideWinner(humanChoice,comChoice){
 
-    
+    const userScoreOutput = document.createElement("span");
+    const comScoreOutput = document.createElement("span");
+
 
     (humanChoice === "scissor" && comChoice === "paper")? (output.textContent = `You win! ${humanChoice} beats ${comChoice}.`,userScore++,round++):
     (humanChoice === "paper" && comChoice === "rock")? (output.textContent = `You win! ${humanChoice} beats ${comChoice}.`,userScore++,round++):
     (humanChoice === "rock" && comChoice === "scissor")? (output.textContent = `You win! ${humanChoice} beats ${comChoice}.`,userScore++,round++):
     (humanChoice === comChoice)? (output.textContent = `It's a draw! ${humanChoice} is equal to ${comChoice}. You have to play again.`):
     (output.textContent = `You lose! ${comChoice} beats ${humanChoice}.`,comScore++,round++);
-    
+
+    userScoreOutput.textContent = `Your Score: ${userScore}`;
+    comScoreOutput.textContent = `Computers Score: ${comScore}`;
+
+    output.appendChild(document.createElement("br"))
+    output.appendChild(userScoreOutput);
+    output.appendChild(document.createElement("br"))
+    output.appendChild(comScoreOutput);
+
     const span = document.createElement("span");
 
     if(round > 4){
+
+        output.removeChild(userScoreOutput);
+        output.removeChild(comScoreOutput);
+
         if(userScore > comScore){
 
             span.textContent = `You won the 5 match game with ${userScore} to ${comScore}.`;
